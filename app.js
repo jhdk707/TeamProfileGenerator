@@ -7,7 +7,7 @@ const path = require("path");
 
 const fs = require("fs");
 
-const DIST_DIR = path.resolver(__dirname, "output");
+const DIST_DIR = path.resolve(__dirname, "dist");
 const outputPath = path.join(DIST_DIR, "index.html");
 
 const render = require("./lib/htmlRender");
@@ -46,9 +46,9 @@ const managerPrompt = () => {
     });
 }
 
-const empployeePrompt = () => {
+const employeePrompt = () => {
     return new Promise((res, rej) => {
-        inquirer.promt([
+        inquirer.prompt([
             {
                 type: "list",
                 message: "Use arrow keys to select another type of employee to enter",
@@ -57,7 +57,7 @@ const empployeePrompt = () => {
                     "Engineer",
                     "Intern",
                 {
-                    name: "No more Employess to add?",
+                    name: "No more Employees to add?",
                     value: "false",
                 }
             ]
@@ -126,7 +126,7 @@ const createHTMLFile = (htmlPage) => {
 }
 
 managerPrompt().then(() => {
-    return empployeePrompt();
+    return employeePrompt();
 }).then(() => {
     const templateHTML = render(teamProfile)
     createHTMLFile(templateHTML);
