@@ -1,4 +1,4 @@
-const Employee = require("lib\Employee.js");
+const Employee = require("../lib/Employee");
 
 test("Can begin Employee instance", () => {
     const emp = new Employee();
@@ -12,7 +12,7 @@ test("Can set name with constructors", () => {
 });
 
 test("Can set ID with constructors", () => {
-    const testValue = 100, 
+    const testValue = 100; 
     const emp = new Employee("Foo", testValue);
     expect(emp.getId()).toBe(testValue);
 });

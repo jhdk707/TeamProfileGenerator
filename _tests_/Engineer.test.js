@@ -1,8 +1,8 @@
-const Engineer = require("lib\Engineer.js");
+const Engineer = require("../lib/Engineer");
 
 test("Can get gitHub acct with constructor", () => {
     const testValue = "GitHubUser";
-    const emp = new Engineer("Foo", 1 , test@test.com);
+    const emp = new Engineer("Foo", 1, "test@test.com", testValue);
     expect(emp.gitHub).toBe(testValue);
 });
 
