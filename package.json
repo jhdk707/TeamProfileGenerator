@@ -1,7 +1,7 @@
 {
   "dependencies": {
-    "inquirer": "^8.2.4",
-    "jest": "^29.4.3"
+    "fs": "^0.0.1-security",
+    "inquirer": "^8.2.4"
   },
   "name": "teamprofilegenerator",
   "description": "",
@@ -16,5 +16,8 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.4.3"
+  }
 }

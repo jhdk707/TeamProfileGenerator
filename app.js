@@ -25,17 +25,17 @@ const managerPrompt = () => {
             },
             {
                 type: "input",
-                message: `What is the managers id?`
+                message: `What is the managers id?`,
                 name: "id",
             }, 
             {
                 type: "input",
-                message: "What is the managers email?"
+                message: "What is the managers email?",
                 name: "email",
             },
             {
                 type: "input",
-                message: "What is the managers office number?"
+                message: "What is the managers office number?",
                 name: "officeNumber",
             },
             ]).then(answers => {
@@ -46,3 +46,90 @@ const managerPrompt = () => {
     });
 }
 
+const empployeePrompt = () => {
+    return new Promise((res, rej) => {
+        inquirer.promt([
+            {
+                type: "list",
+                message: "Use arrow keys to select another type of employee to enter",
+                name: "employeeType",
+                choices: [
+                    "Engineer",
+                    "Intern",
+                {
+                    name: "No more Employess to add?",
+                    value: "false",
+                }
+            ]
+        },
+        {
+            message: "What is the Engineers name?",
+            name: "name",
+            when: ({ employeeType }) => employeeType === "Engineer"
+        },
+        {
+            message: "What is the Interns name?",
+            name: "name",
+            when: ({ employeeType }) => employeeType === "Intern"
+        },
+        {
+            message: "What is the Engineers Id?",
+            name: "id",
+            when: ({ employeeType }) => employeeType === "Engineer"
+        },
+        {
+            message: "What is the Interns id?",
+            name: "id",
+            when: ({ employeeType }) => employeeType === "Intern"
+        },
+        {
+            message: "What is the Engineers email address?",
+            name: "email",
+            when: ({ employeeType }) => employeeType === "Engineer"
+        },
+        {
+            message: "What is the Interns email address?",
+            name: "email",
+            when: ({ employeeType }) => employeeType === "Intern"
+        },
+        {
+            message: "What is the Engineers GitHub Id?",
+            name: "github",
+            when: ({ employeeType }) => employeeType === "Engineer"
+        },
+        {
+            message: "What school did the Intern go to?",
+            name: "school",
+            when: ({ employeeType }) => employeeType === "Intern"
+        }           
+        ]).then(answers => {
+            if (answers.employeeType) {
+                switch (answers.employeeType) {
+                    case "Engineer":
+                    const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
+                    teamProfile.push(engineer);
+                    break;
+                }
+            }
+        })
+    })
+}
+
+const createHTMLFile = (htmlPage) => {
+    if (!fs.existsSync(DIST_DIR)) {
+        fs.mkdirSync(DIST_DIR);
+    }
+    fs.writeFile(outputPath, htmlPage, "utf-8", (err) => {
+        if(err) throw err;
+        console.log(`Success! Checkout Team Profile Page at ${outputPath}`)
+    });
+}
+
+managerPrompt().then(() => {
+    return empployeePrompt();
+}).then(() => {
+    const templateHTML = render(teamProfile)
+    createHTMLFile(templateHTML);
+}).catch((err) => {
+    console.log(err);
+});
