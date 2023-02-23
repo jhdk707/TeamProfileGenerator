@@ -1,15 +1,17 @@
 <div class="card">
-    <header class="card-header has-background-primary">
-      <p class="card-header-title">{{ name }}</p>
-      <p class="card-header-title"><i class="fas fa-mug-hot mr-2"></i>{{ role }}</p>
-    </header>
-    <div class="card-content">
-      <div class="content">
-        <ul class="list">
-          <li>ID: {{ id }}</li>
-          <li>Email: <a href="mailto:{{ email }}">{{ email }}</a></li>
-          <li>Office Number: {{ officeNumber }}</li>
-        </ul>
-      </div>
+  <header class="card-header has-background-primary">
+    <p class="card-header-title">{{ name }}</p>
+    <p class="card-header-title">
+      <i class="fas fa-mug-hot mr-2"></i>{{ role }}
+    </p>
+  </header>
+  <div class="card-content">
+    <div class="content">
+      <ul class="list">
+        <li>ID: {{ id }}</li>
+        <li>Email: <a href="mailto:{{ email }}">{{ email }}</a></li>
+        <li>Office Number: {{ officeNumber }}</li>
+      </ul>
     </div>
   </div>
+</div>
