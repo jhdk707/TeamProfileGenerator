@@ -67,7 +67,7 @@ const employeePrompt = () => {
             "Intern",
             {
               name: "No more Employees to add?",
-              value: "false",
+              value: "true",
             },
           ],
         },
@@ -113,7 +113,7 @@ const employeePrompt = () => {
         },
       ])
       .then((answers) => {
-        if (answers.employeeType) {
+        if (answers.employeeType && answers.employeeType !== "true") {
           switch (answers.employeeType) {
             case "Engineer":
               const engineer = new Engineer(
